@@ -17,7 +17,7 @@ const vendorRoutes = require('./routes/vendor');
 const apiRoutes = require('./routes/api');
 
 // Import middleware
-const authMiddleware = require('./middleware/auth');
+const { authMiddleware } = require('./middleware/auth');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -107,11 +107,24 @@ app.use('*', (req, res) => {
     res.status(404).json({ error: 'Route not found' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`🚀 SkyVoyage server running on http://localhost:${PORT}`);
-    console.log(`📊 Admin Panel: http://localhost:${PORT}/admin`);
-    console.log(`🏢 Vendor Panel: http://localhost:${PORT}/vendor`);
-});
+// Initialize database and start server
+async function startServer() {
+    try {
+        const database = require('./config/database');
+        await database.connect();
+        console.log('✅ Database connected successfully');
+        
+        app.listen(PORT, () => {
+            console.log(`🚀 SkyVoyage server running on http://localhost:${PORT}`);
+            console.log(`📊 Admin Panel: http://localhost:${PORT}/admin`);
+            console.log(`🏢 Vendor Panel: http://localhost:${PORT}/vendor`);
+        });
+    } catch (error) {
+        console.error('❌ Failed to start server:', error);
+        process.exit(1);
+    }
+}
+
+startServer();
 
 module.exports = app;

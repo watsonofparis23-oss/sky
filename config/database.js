@@ -8,6 +8,11 @@ class Database {
 
     connect() {
         return new Promise((resolve, reject) => {
+            if (this.db) {
+                resolve();
+                return;
+            }
+            
             const dbPath = path.join(__dirname, '..', 'database', 'skyvoyage.db');
             
             this.db = new sqlite3.Database(dbPath, (err) => {
