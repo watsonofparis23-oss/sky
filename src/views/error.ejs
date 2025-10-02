@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a73e8 0%, #6c5ce7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .error-container {
+            background: white;
+            padding: 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+        }
+        .error-icon {
+            font-size: 5rem;
+            color: #dc2626;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            background: #1a73e8;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .btn:hover {
+            background: #0d62c9;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h1><%= error.status %></h1>
+        <p><%= error.message %></p>
+        <a href="/" class="btn">Go Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyVoyage Admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/admin/dashboard" class="active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/admin/users">
+                    <i class="fas fa-users"></i> Users
+                </a>
+                <a href="/admin/vendors">
+                    <i class="fas fa-building"></i> Vendors
+                </a>
+                <a href="/admin/bookings">
+                    <i class="fas fa-ticket-alt"></i> Bookings
+                </a>
+                <a href="/admin/analytics">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+                <a href="/admin/financial">
+                    <i class="fas fa-dollar-sign"></i> Financial
+                </a>
+                <a href="/admin/promotions">
+                    <i class="fas fa-tags"></i> Promotions
+                </a>
+                <a href="/admin/support">
+                    <i class="fas fa-headset"></i> Support
+                </a>
+                <a href="/admin/security">
+                    <i class="fas fa-shield-alt"></i> Security
+                </a>
+                <a href="/admin/settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="/auth/logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Admin Dashboard</h1>
+                <div class="user-info">
+                    <span>Platform Administrator</span>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h3><%= stats.total_users || 0 %></h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-building"></i>
+                        <div>
+                            <h3><%= stats.active_vendors || 0 %></h3>
+                            <p>Active Vendors</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-ticket-alt"></i>
+                        <div>
+                            <h3><%= stats.total_bookings || 0 %></h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div>
+                            <h3>$<%= (stats.total_revenue || 0).toFixed(2) %></h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Pending Vendor Approvals</h2>
+                            <a href="/admin/vendors">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (pendingVendors.length > 0) { %>
+                                <% pendingVendors.forEach(vendor => { %>
+                                    <div class="trip-item">
+                                        <div class="trip-info">
+                                            <h4><%= vendor.company_name %></h4>
+                                            <p><%= vendor.email %> • <%= vendor.airline_code %></p>
+                                        </div>
+                                        <div style="display: flex; gap: 8px;">
+                                            <button class="btn-approve" onclick="approveVendor(<%= vendor.id %>)">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn-reject" onclick="rejectVendor(<%= vendor.id %>)">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No pending vendor approvals</p>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Recent Bookings</h2>
+                            <a href="/admin/bookings">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (recentBookings.length > 0) { %>
+                                <% recentBookings.forEach(booking => { %>
+                                    <div class="trip-item">
+                                        <div class="trip-info">
+                                            <h4><%= booking.company_name %> - <%= booking.flight_number %></h4>
+                                            <p><%= booking.first_name %> <%= booking.last_name %> • $<%= booking.total_price.toFixed(2) %></p>
+                                        </div>
+                                        <span class="badge badge-<%= booking.status %>"><%= booking.status %></span>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No recent bookings</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .btn-approve, .btn-reject {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-approve {
+            background: #10b981;
+            color: white;
+        }
+        .btn-approve:hover {
+            background: #059669;
+        }
+        .btn-reject {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-reject:hover {
+            background: #dc2626;
+        }
+    </style>
+
+    <script>
+        async function approveVendor(vendorId) {
+            if (!confirm('Are you sure you want to approve this vendor?')) return;
+            
+            try {
+                const response = await fetch(`/admin/vendors/${vendorId}/approve`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Vendor approved successfully');
+                    location.reload();
+                } else {
+                    alert(data.error || 'Failed to approve vendor');
+                }
+            } catch (error) {
+                alert('An error occurred');
+            }
+        }
+
+        async function rejectVendor(vendorId) {
+            const reason = prompt('Rejection reason:');
+            if (!reason) return;
+            
+            try {
+                const response = await fetch(`/admin/vendors/${vendorId}/reject`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ reason })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Vendor rejected');
+                    location.reload();
+                } else {
+                    alert(data.error || 'Failed to reject vendor');
+                }
+            } catch (error) {
+                alert('An error occurred');
+            }
+        }
+    </script>
+</body>
+</html>
