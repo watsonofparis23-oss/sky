@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <!-- Background -->
+        <div class="auth-background">
+            <div class="auth-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        
+        <!-- Auth Content -->
+        <div class="auth-content">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <a href="/">
+                    <i class="fas fa-plane"></i>
+                    <span>SkyVoyage</span>
+                </a>
+            </div>
+            
+            <!-- Auth Form Container -->
+            <div class="auth-form-container">
+                <!-- Flash Messages -->
+                <% if (success && success.length > 0) { %>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <%= success %>
+                    </div>
+                <% } %>
+                
+                <% if (error && error.length > 0) { %>
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <%= error %>
+                    </div>
+                <% } %>
+                
+                <% if (info && info.length > 0) { %>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <%= info %>
+                    </div>
+                <% } %>
+
+                <!-- Page Content -->
+                <%- body %>
+            </div>
+            
+            <!-- Footer -->
+            <div class="auth-footer">
+                <p>&copy; 2024 SkyVoyage. All rights reserved.</p>
+                <div class="auth-links">
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/terms-of-service">Terms of Service</a>
+                    <a href="/help">Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Find Your Perfect Flight</h1>
+                <p class="hero-subtitle">Search, compare and book flights with our AI-powered platform. Get the best deals to over 200+ countries worldwide.</p>
+                
+                <!-- Reciprocity: Free benefit offer -->
+                <div class="free-benefit">
+                    <i class="fas fa-gift"></i>
+                    <span>Free lounge access on all international flights booked today!</span>
+                </div>
+                
+                <!-- Social proof -->
+                <div class="social-proof">
+                    <i class="fas fa-users"></i>
+                    <span>2,345 travelers booked with us in the last 24 hours</span>
+                </div>
+            </div>
+            
+            <div class="hero-search">
+                <div class="search-container">
+                    <div class="search-tabs">
+                        <div class="search-tab active" data-type="round-trip">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>Round Trip</span>
+                        </div>
+                        <div class="search-tab" data-type="one-way">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>One Way</span>
+                        </div>
+                        <div class="search-tab" data-type="multicity">
+                            <i class="fas fa-route"></i>
+                            <span>Multicity</span>
+                        </div>
+                    </div>
+                    
+                    <form class="search-form" action="/flights/search" method="GET">
+                        <div class="search-row">
+                            <div class="search-field">
+                                <label for="from"><i class="fas fa-map-marker-alt"></i> From</label>
+                                <input type="text" id="from" name="from" placeholder="Departure City" value="New York (JFK)" required>
+                            </div>
+                            <div class="search-field">
+                                <label for="to"><i class="fas fa-map-marker"></i> To</label>
+                                <input type="text" id="to" name="to" placeholder="Arrival City" value="London (LHR)" required>
+                            </div>
+                            <div class="search-field">
+                                <label for="departure"><i class="fas fa-calendar-alt"></i> Departure</label>
+                                <input type="date" id="departure" name="departure" required>
+                            </div>
+                            <div class="search-field" id="returnField">
+                                <label for="return"><i class="fas fa-calendar-check"></i> Return</label>
+                                <input type="date" id="return" name="return">
+                            </div>
+                            <div class="search-field">
+                                <label for="passengers"><i class="fas fa-users"></i> Travelers</label>
+                                <select id="passengers" name="passengers">
+                                    <option value="1">1 Adult</option>
+                                    <option value="2">2 Adults</option>
+                                    <option value="3" selected>2 Adults, 1 Child</option>
+                                    <option value="4">2 Adults, 2 Children</option>
+                                    <option value="5">3+ Adults</option>
+                                </select>
+                            </div>
+                            <div class="search-field">
+                                <label for="class"><i class="fas fa-couch"></i> Class</label>
+                                <select id="class" name="class">
+                                    <option value="economy">Economy</option>
+                                    <option value="premium">Premium Economy</option>
+                                    <option value="business" selected>Business</option>
+                                    <option value="first">First Class</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            Search Flights
+                        </button>
+                        
+                        <!-- Trust badges -->
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Secure Booking</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>SSL Encryption</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-star"></i>
+                                <span>4.8/5 Rating</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>500+</h3>
+                        <p>Airlines Worldwide</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>200+</h3>
+                        <p>Countries Covered</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>2M+</h3>
+                        <p>Happy Travelers</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>4.8/5</h3>
+                        <p>Customer Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Popular Destinations
+                </h2>
+                <p class="section-subtitle">Discover amazing places around the world</p>
+                
+                <!-- Social proof -->
+                <div class="social-proof">
+                    <i class="fas fa-globe-americas"></i>
+                    <span>Trending destinations based on thousands of traveler bookings</span>
+                </div>
+            </div>
+            
+            <div class="destinations-grid">
+                <div class="destination-card" data-destination="dubai">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1562602833-72b336fa9e2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Dubai">
+                        <div class="destination-overlay">
+                            <div class="wishlist-icon" data-destination="dubai">
+                                <i class="far fa-heart"></i>
+                            </div>
+                            <div class="fomo-indicator">
+                                <i class="fas fa-fire"></i> TRENDING
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">Dubai</h3>
+                        <p class="destination-flights">From $499</p>
+                        <div class="destination-details">
+                            <span><i class="fas fa-plane"></i> 15+ flights daily</span>
+                            <span><i class="fas fa-clock"></i> 8h 30m avg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-destination="paris">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Paris">
+                        <div class="destination-overlay">
+                            <div class="wishlist-icon" data-destination="paris">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">Paris</h3>
+                        <p class="destination-flights">From $549</p>
+                        <div class="destination-details">
+                            <span><i class="fas fa-plane"></i> 25+ flights daily</span>
+                            <span><i class="fas fa-clock"></i> 7h 15m avg</span>
+                        </div>
+                        <div class="social-proof">
+                            <i class="fas fa-user"></i> 2.4K visitors this month
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-destination="tokyo">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1506970840772-503770eb8c51?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Tokyo">
+                        <div class="destination-overlay">
+                            <div class="wishlist-icon" data-destination="tokyo">
+                                <i class="far fa-heart"></i>
+                            </div>
+                            <div class="fomo-indicator">
+                                <i class="fas fa-bolt"></i> SALE
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">Tokyo</h3>
+                        <p class="destination-flights">From $799</p>
+                        <div class="destination-details">
+                            <span><i class="fas fa-plane"></i> 12+ flights daily</span>
+                            <span><i class="fas fa-clock"></i> 13h 45m avg</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-card" data-destination="singapore">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1532664189809-02133fee698d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Singapore">
+                        <div class="destination-overlay">
+                            <div class="wishlist-icon" data-destination="singapore">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="destination-content">
+                        <h3 class="destination-name">Singapore</h3>
+                        <p class="destination-flights">From $689</p>
+                        <div class="destination-details">
+                            <span><i class="fas fa-plane"></i> 8+ flights daily</span>
+                            <span><i class="fas fa-clock"></i> 18h 20m avg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Deals -->
+    <section class="deals-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-percent"></i>
+                    Special Flight Deals
+                </h2>
+                <p class="section-subtitle">Limited time offers you don't want to miss</p>
+                
+                <!-- Urgency timer -->
+                <div class="urgency-timer">
+                    <i class="fas fa-bolt"></i> FLASH SALE: Ends in 04:18:32
+                </div>
+            </div>
+            
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-badge">Popular</div>
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Paris">
+                    </div>
+                    <div class="deal-content">
+                        <h3 class="deal-destination">New York to Paris</h3>
+                        <p class="deal-details">Round trip • 7-14 days • Direct flights available</p>
+                        
+                        <!-- Anchoring: Show original price -->
+                        <div class="deal-pricing">
+                            <span class="original-price">$899</span>
+                            <span class="current-price">$649</span>
+                        </div>
+                        
+                        <!-- Scarcity indicator -->
+                        <div class="scarcity-indicator">
+                            <i class="fas fa-bolt"></i> 12 seats left at this price
+                        </div>
+                        
+                        <!-- Social proof -->
+                        <div class="social-proof">
+                            <i class="fas fa-user-check"></i> 43 booked today
+                        </div>
+                        
+                        <button class="deal-btn">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="deal-card">
+                    <div class="deal-badge">Sale</div>
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Tokyo">
+                    </div>
+                    <div class="deal-content">
+                        <h3 class="deal-destination">London to Tokyo</h3>
+                        <p class="deal-details">Round trip • 10-21 days • 1 stop</p>
+                        
+                        <!-- Anchoring: Show original price -->
+                        <div class="deal-pricing">
+                            <span class="original-price">$1,199</span>
+                            <span class="current-price">$899</span>
+                        </div>
+                        
+                        <!-- Reciprocity: Free benefit -->
+                        <div class="free-benefit">
+                            <i class="fas fa-suitcase"></i> Free extra baggage
+                        </div>
+                        
+                        <button class="deal-btn">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="deal-card">
+                    <div class="deal-image">
+                        <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Bali">
+                    </div>
+                    <div class="deal-content">
+                        <h3 class="deal-destination">Sydney to Bali</h3>
+                        <p class="deal-details">Round trip • 5-12 days • Direct flights</p>
+                        
+                        <!-- Social proof -->
+                        <div class="social-proof">
+                            <i class="fas fa-star"></i> Recommended by 92% of travelers
+                        </div>
+                        
+                        <div class="deal-pricing">
+                            <span class="current-price">$429</span>
+                        </div>
+                        
+                        <button class="deal-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i>
+                    Why Choose SkyVoyage?
+                </h2>
+                <p class="section-subtitle">Experience the future of travel booking</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Search</h3>
+                    <p>Our advanced AI finds the best deals and personalized recommendations for your travel needs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Booking</h3>
+                    <p>Bank-level security ensures your personal and payment information is always protected.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support to help you with any travel needs or emergencies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Loyalty Rewards</h3>
+                    <p>Earn points on every booking and redeem them for free flights, upgrades, and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App</h3>
+                    <p>Book, manage, and track your flights on the go with our intuitive mobile application.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Offset your carbon footprint and contribute to sustainable travel initiatives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-quote-left"></i>
+                    What Our Travelers Say
+                </h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"SkyVoyage found me an amazing deal to Bali that was $200 cheaper than other sites. The entire booking process was seamless!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="Sarah Johnson">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Frequent Traveler</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The AI concierge helped me plan my entire trip to Japan. From flights to local recommendations, everything was perfect!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="Michael Chen">
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Business Traveler</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Outstanding customer service! When my flight was delayed, they rebooked me on the next available flight within minutes."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="Emily Rodriguez">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Family Traveler</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Join millions of travelers who trust SkyVoyage for their flight bookings</p>
+                <div class="cta-buttons">
+                    <a href="/auth/register" class="btn-primary">Get Started Free</a>
+                    <a href="/auth/login" class="btn-secondary">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2><i class="fas fa-plane"></i> SkyVoyage</h2>
+                <p>Your journey begins with us. Explore the world with our premium flight booking services and travel management tools.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/press">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="/help-center">Help Center</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="/destinations/europe">Europe</a></li>
+                        <li><a href="/destinations/asia">Asia</a></li>
+                        <li><a href="/destinations/north-america">North America</a></li>
+                        <li><a href="/destinations/south-america">South America</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="/services/flight-booking">Flight Booking</a></li>
+                        <li><a href="/services/hotel-reservation">Hotel Reservation</a></li>
+                        <li><a href="/services/travel-insurance">Travel Insurance</a></li>
+                        <li><a href="/services/car-rental">Car Rental</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2024 SkyVoyage. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/components.js"></script>
+    <script>
+        // Initialize date inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const nextWeek = new Date();
+            nextWeek.setDate(today.getDate() + 7);
+            
+            document.getElementById('departure').valueAsDate = today;
+            document.getElementById('return').valueAsDate = nextWeek;
+            
+            // Search tab functionality
+            const searchTabs = document.querySelectorAll('.search-tab');
+            const returnField = document.getElementById('returnField');
+            
+            searchTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    searchTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const type = this.getAttribute('data-type');
+                    if (type === 'one-way') {
+                        returnField.style.display = 'none';
+                        document.getElementById('return').required = false;
+                    } else {
+                        returnField.style.display = 'block';
+                        document.getElementById('return').required = true;
+                    }
+                });
+            });
+            
+            // Destination card functionality
+            const destinationCards = document.querySelectorAll('.destination-card');
+            destinationCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const destination = this.getAttribute('data-destination');
+                    document.getElementById('to').value = destination.charAt(0).toUpperCase() + destination.slice(1);
+                    document.querySelector('.search-form').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Deal card functionality
+            const dealCards = document.querySelectorAll('.deal-card');
+            dealCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // In a real implementation, this would redirect to booking page
+                    alert('Redirecting to booking page...');
+                });
+            });
+            
+            // Wishlist functionality
+            const wishlistIcons = document.querySelectorAll('.wishlist-icon');
+            wishlistIcons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    const heartIcon = this.querySelector('i');
+                    
+                    if (this.classList.contains('active')) {
+                        heartIcon.classList.remove('far', 'fa-heart');
+                        heartIcon.classList.add('fas', 'fa-heart');
+                        SkyVoyage.showToast('Added to your wishlist!');
+                    } else {
+                        heartIcon.classList.remove('fas', 'fa-heart');
+                        heartIcon.classList.add('far', 'fa-heart');
+                        SkyVoyage.showToast('Removed from your wishlist!');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

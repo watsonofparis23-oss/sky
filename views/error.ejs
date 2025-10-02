@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - SkyVoyage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-content">
+            <div class="auth-logo">
+                <a href="/">
+                    <i class="fas fa-plane"></i>
+                    <span>SkyVoyage</span>
+                </a>
+            </div>
+            
+            <div class="error-container">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                
+                <h1 class="error-title"><%= title %></h1>
+                <p class="error-message"><%= message %></p>
+                
+                <% if (typeof error !== 'undefined' && error.stack) { %>
+                    <details class="error-details">
+                        <summary>Technical Details</summary>
+                        <pre><%= error.stack %></pre>
+                    </details>
+                <% } %>
+                
+                <div class="error-actions">
+                    <a href="/" class="btn-primary">
+                        <i class="fas fa-home"></i>
+                        Go Home
+                    </a>
+                    <a href="javascript:history.back()" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Go Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .error-container {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    
+    .error-icon {
+        font-size: 4rem;
+        color: var(--danger);
+        margin-bottom: 20px;
+    }
+    
+    .error-title {
+        font-size: 2.5rem;
+        color: var(--dark);
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+    
+    .error-message {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    
+    .error-details {
+        background: var(--light);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 30px 0;
+        text-align: left;
+    }
+    
+    .error-details summary {
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--dark);
+        margin-bottom: 10px;
+    }
+    
+    .error-details pre {
+        background: var(--dark);
+        color: var(--light);
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+        white-space: pre-wrap;
+    }
+    
+    .error-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .error-actions .btn-primary,
+    .error-actions .btn-secondary {
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .error-actions .btn-primary {
+        background: var(--gradient-primary);
+        color: white;
+    }
+    
+    .error-actions .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(26, 115, 232, 0.3);
+    }
+    
+    .error-actions .btn-secondary {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+    
+    .error-actions .btn-secondary:hover {
+        background: var(--primary);
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .error-title {
+            font-size: 2rem;
+        }
+        
+        .error-message {
+            font-size: 1rem;
+        }
+        
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .error-actions .btn-primary,
+        .error-actions .btn-secondary {
+            width: 100%;
+            max-width: 200px;
+            justify-content: center;
+        }
+    }
+    </style>
+</body>
+</html>

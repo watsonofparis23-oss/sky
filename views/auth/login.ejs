@@ -1,0 +1,74 @@
+<div class="auth-form">
+    <h2>Welcome Back</h2>
+    <p>Sign in to your SkyVoyage account</p>
+    
+    <form action="/auth/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+        </div>
+        
+        <button type="submit" class="form-submit">
+            <i class="fas fa-sign-in-alt"></i>
+            Sign In
+        </button>
+    </form>
+    
+    <div class="auth-switch">
+        <p>Don't have an account? <a href="/auth/register">Create one now</a></p>
+        <p><a href="/auth/vendor-login">Vendor Login</a> | <a href="/auth/admin-login">Admin Login</a></p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const submitBtn = document.querySelector('.form-submit');
+    
+    form.addEventListener('submit', function(e) {
+        submitBtn.classList.add('loading');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+    });
+    
+    // Add password visibility toggle
+    const passwordInput = document.getElementById('password');
+    const passwordToggle = document.createElement('button');
+    passwordToggle.type = 'button';
+    passwordToggle.className = 'password-toggle';
+    passwordToggle.innerHTML = '<i class="fas fa-eye"></i>';
+    passwordToggle.style.cssText = `
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 5px;
+    `;
+    
+    const passwordGroup = passwordInput.parentElement;
+    passwordGroup.style.position = 'relative';
+    passwordGroup.appendChild(passwordToggle);
+    
+    passwordToggle.addEventListener('click', function() {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        
+        const icon = this.querySelector('i');
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+    });
+});
+</script>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - SkyVoyage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-plane"></i> SkyVoyage</h2>
+        </div>
+        <nav class="sidebar-menu">
+            <% if (user) { %>
+                <!-- User Menu -->
+                <h3>Authentication</h3>
+                <ul>
+                    <li><a href="/user/profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="/auth/logout" onclick="return confirm('Are you sure you want to logout?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+
+                <h3>Main</h3>
+                <ul>
+                    <li><a href="/user/dashboard" class="<%= (typeof activeTab !== 'undefined' && activeTab === 'dashboard') ? 'active' : '' %>"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="/user/discover"><i class="fas fa-compass"></i> Discover</a></li>
+                    <li><a href="/user/wishlist"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="/user/trips"><i class="fas fa-suitcase"></i> My Trips</a></li>
+                    <li><a href="/user/experiences"><i class="fas fa-star"></i> Traveler Experiences</a></li>
+                </ul>
+
+                <h3>Bookings & Management</h3>
+                <ul>
+                    <li><a href="/user/flights"><i class="fas fa-plane-departure"></i> My Flights</a></li>
+                    <li><a href="/user/booking-management"><i class="fas fa-cog"></i> Booking Management</a></li>
+                    <li><a href="/user/cancel"><i class="fas fa-times-circle"></i> Cancel</a></li>
+                    <li><a href="/user/change-seat"><i class="fas fa-chair"></i> Change Seat</a></li>
+                    <li><a href="/user/baggage"><i class="fas fa-luggage-cart"></i> Baggage</a></li>
+                    <li><a href="/user/upcoming-trips"><i class="fas fa-calendar-alt"></i> Upcoming Trips</a></li>
+                    <li><a href="/user/saved-trips"><i class="fas fa-bookmark"></i> Saved Trips</a></li>
+                    <li><a href="/user/multicity"><i class="fas fa-globe-americas"></i> Multicity</a></li>
+                </ul>
+
+                <h3>Travel Services</h3>
+                <ul>
+                    <li><a href="/user/travel-journey"><i class="fas fa-route"></i> Travel Journey</a></li>
+                    <li><a href="/user/ai-packing"><i class="fas fa-suitcase-rolling"></i> AI Packing List</a></li>
+                    <li><a href="/user/visa-documentation"><i class="fas fa-passport"></i> Visa & Documentation</a></li>
+                    <li><a href="/user/travel-insurance"><i class="fas fa-shield-alt"></i> Travel Insurance</a></li>
+                    <li><a href="/user/lounge-access"><i class="fas fa-couch"></i> Lounge Access</a></li>
+                    <li><a href="/user/airport-maps"><i class="fas fa-map-marked-alt"></i> Airport Maps</a></li>
+                    <li><a href="/user/security-wait-times"><i class="fas fa-clock"></i> Security Wait Times</a></li>
+                    <li><a href="/user/immigration-times"><i class="fas fa-users"></i> Immigration Times</a></li>
+                    <li><a href="/user/weather"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                    <li><a href="/user/currency"><i class="fas fa-money-bill-wave"></i> Currency</a></li>
+                    <li><a href="/user/language-guide"><i class="fas fa-language"></i> Language Guide</a></li>
+                    <li><a href="/user/language-translation"><i class="fas fa-comments"></i> Language Translation</a></li>
+                    <li><a href="/user/local-attractions"><i class="fas fa-mountain"></i> Local Attractions</a></li>
+                    <li><a href="/user/transport"><i class="fas fa-bus"></i> Transport</a></li>
+                    <li><a href="/user/duty-free"><i class="fas fa-shopping-bag"></i> Duty Free Shopping</a></li>
+                </ul>
+
+                <h3>In-Flight Experience</h3>
+                <ul>
+                    <li><a href="/user/inflight-wifi"><i class="fas fa-wifi"></i> In-Flight WiFi</a></li>
+                    <li><a href="/user/entertainment"><i class="fas fa-film"></i> Entertainment</a></li>
+                    <li><a href="/user/meal-options"><i class="fas fa-utensils"></i> Meal Options</a></li>
+                    <li><a href="/user/duty-free-shopping"><i class="fas fa-shopping-bag"></i> Duty Free Shopping</a></li>
+                    <li><a href="/user/sleep-mode"><i class="fas fa-moon"></i> Sleep Mode</a></li>
+                </ul>
+
+                <h3>Airport Services</h3>
+                <ul>
+                    <li><a href="/user/boarding-pass"><i class="fas fa-ticket-alt"></i> Boarding Pass</a></li>
+                    <li><a href="/user/flight-tracker"><i class="fas fa-satellite"></i> Flight Tracker</a></li>
+                    <li><a href="/user/airport-navigation"><i class="fas fa-map-signs"></i> Airport Navigation</a></li>
+                    <li><a href="/user/parking"><i class="fas fa-parking"></i> Parking</a></li>
+                    <li><a href="/user/transport-options"><i class="fas fa-bus"></i> Transport Options</a></li>
+                    <li><a href="/user/baggage-tracker"><i class="fas fa-luggage-cart"></i> Baggage Tracker</a></li>
+                    <li><a href="/user/24hr-sale"><i class="fas fa-store"></i> 24 hr sale</a></li>
+                </ul>
+
+                <h3>Travel Analytics</h3>
+                <ul>
+                    <li><a href="/user/expense-report"><i class="fas fa-chart-pie"></i> Expense Report</a></li>
+                    <li><a href="/user/travel-statistics"><i class="fas fa-chart-line"></i> Travel Statistics</a></li>
+                    <li><a href="/user/spending-analysis"><i class="fas fa-money-bill"></i> Spending Analysis</a></li>
+                    <li><a href="/user/carbon-footprint"><i class="fas fa-leaf"></i> Carbon Footprint</a></li>
+                    <li><a href="/user/travel-heatmap"><i class="fas fa-map"></i> Travel Heatmap</a></li>
+                    <li><a href="/user/trip-memories"><i class="fas fa-camera"></i> Trip Memories</a></li>
+                </ul>
+
+                <h3>Account</h3>
+                <ul>
+                    <li><a href="/user/profile"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="/user/themes"><i class="fas fa-paint-brush"></i> Themes</a></li>
+                    <li><a href="/user/payment-methods"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                    <li><a href="/user/loyalty-tokens"><i class="fas fa-coins"></i> Loyalty Tokens</a></li>
+                    <li><a href="/user/gift-cards"><i class="fas fa-gift"></i> Gift Cards</a></li>
+                </ul>
+
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="/user/help-support"><i class="fas fa-question-circle"></i> Help & Support</a></li>
+                    <li><a href="/user/feedback"><i class="fas fa-comment"></i> Feedback</a></li>
+                    <li><a href="/user/contact-us"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="/user/refund-policy"><i class="fas fa-file-alt"></i> Refund Policy</a></li>
+                    <li><a href="/user/privacy-policy"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="/user/terms-of-service"><i class="fas fa-gavel"></i> Terms of Service</a></li>
+                    <li><a href="/user/about-us"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="/user/careers"><i class="fas fa-briefcase"></i> Careers</a></li>
+                    <li><a href="/user/blog"><i class="fas fa-blog"></i> Blog</a></li>
+                    <li><a href="/user/alerts"><i class="fas fa-bell"></i> Alerts</a></li>
+                </ul>
+            <% } else { %>
+                <!-- Guest Menu -->
+                <h3>Authentication</h3>
+                <ul>
+                    <li><a href="/auth/login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="/auth/register"><i class="fas fa-user-plus"></i> Register</a></li>
+                    <li><a href="/auth/vendor-register"><i class="fas fa-plane-arrival"></i> Be vendor</a></li>
+                </ul>
+            <% } %>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="header-search-form">
+                <form action="/flights/search" method="GET">
+                    <input type="text" name="from" placeholder="From" value="<%= typeof searchFrom !== 'undefined' ? searchFrom : '' %>">
+                    <input type="text" name="to" placeholder="To" value="<%= typeof searchTo !== 'undefined' ? searchTo : '' %>">
+                    <input type="date" name="departure" value="<%= typeof searchDeparture !== 'undefined' ? searchDeparture : '' %>">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            
+            <div class="header-right">
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <div class="theme-thumb"></div>
+                </div>
+                
+                <% if (user) { %>
+                    <div class="notification-btn dropdown" id="notificationBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationCount">0</span>
+                        <div class="dropdown-content">
+                            <h3>Notifications</h3>
+                            <div id="notificationsList">
+                                <!-- Notifications will be loaded here -->
+                            </div>
+                            <a href="/user/notifications" class="view-all-notifications">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="user-btn dropdown" id="userBtn">
+                        <div class="user-profile">
+                            <div class="user-avatar"><%= user.first_name.charAt(0).toUpperCase() %><%= user.last_name.charAt(0).toUpperCase() %></div>
+                            <span><%= user.first_name %> <%= user.last_name %></span>
+                        </div>
+                        <div class="dropdown-content profile-dropdown">
+                            <div class="user-info">
+                                <div class="user-avatar"><%= user.first_name.charAt(0).toUpperCase() %><%= user.last_name.charAt(0).toUpperCase() %></div>
+                                <div class="user-details">
+                                    <h4><%= user.first_name %> <%= user.last_name %></h4>
+                                    <p><%= user.loyalty_points %> Loyalty Points</p>
+                                </div>
+                            </div>
+                            <ul class="profile-menu">
+                                <li><a href="/user/profile"><i class="fas fa-user"></i> My Profile</a></li>
+                                <li><a href="/user/bookings"><i class="fas fa-suitcase"></i> My Bookings</a></li>
+                                <li><a href="/user/settings"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="/user/payment-methods"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                                <li><a href="/auth/logout" onclick="return confirm('Are you sure you want to logout?')"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="auth-buttons">
+                        <a href="/auth/login" class="btn-login">Login</a>
+                        <a href="/auth/register" class="btn-register">Register</a>
+                    </div>
+                <% } %>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Flash Messages -->
+            <% if (success && success.length > 0) { %>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <%= success %>
+                </div>
+            <% } %>
+            
+            <% if (error && error.length > 0) { %>
+                <div class="alert alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <%= error %>
+                </div>
+            <% } %>
+            
+            <% if (info && info.length > 0) { %>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <%= info %>
+                </div>
+            <% } %>
+
+            <!-- Page Content -->
+            <%- body %>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-plane"></i> SkyVoyage</h2>
+                    <p>Your journey begins with us. Explore the world with our premium flight booking services and travel management tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="/about-us">About Us</a></li>
+                            <li><a href="/careers">Careers</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/press">Press</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="/help-center">Help Center</a></li>
+                            <li><a href="/contact-us">Contact Us</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
+                            <li><a href="/terms-of-service">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Destinations</h3>
+                        <ul>
+                            <li><a href="/destinations/europe">Europe</a></li>
+                            <li><a href="/destinations/asia">Asia</a></li>
+                            <li><a href="/destinations/north-america">North America</a></li>
+                            <li><a href="/destinations/south-america">South America</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="/services/flight-booking">Flight Booking</a></li>
+                            <li><a href="/services/hotel-reservation">Hotel Reservation</a></li>
+                            <li><a href="/services/travel-insurance">Travel Insurance</a></li>
+                            <li><a href="/services/car-rental">Car Rental</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2024 SkyVoyage. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- AI Concierge Floating Button -->
+    <div class="ai-concierge" id="aiConciergeBtn">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- SOS Button -->
+    <div class="sos-button" id="sosBtn">
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+
+    <!-- Luxury Mode Toggle -->
+    <div class="luxury-toggle" id="luxuryToggle">
+        <i class="fas fa-crown"></i> Luxury Mode
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Operation completed successfully!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/components.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/flights.js"></script>
+    <script src="/js/notifications.js"></script>
+</body>
+</html>
