@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyVoyage</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/user/dashboard" class="active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/flights/search">
+                    <i class="fas fa-search"></i> Search Flights
+                </a>
+                <a href="/user/trips">
+                    <i class="fas fa-suitcase"></i> My Trips
+                </a>
+                <a href="/user/wishlist">
+                    <i class="fas fa-heart"></i> Wishlist
+                </a>
+                <a href="/user/profile">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="/user/settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="/auth/logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Welcome, <%= user.first_name %>!</h1>
+                <div class="user-info">
+                    <span>Loyalty Points: <%= user.loyalty_points || 0 %></span>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-plane"></i>
+                        <div>
+                            <h3><%= stats.total_bookings || 0 %></h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h3><%= stats.confirmed_bookings || 0 %></h3>
+                            <p>Confirmed Trips</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div>
+                            <h3>$<%= (stats.total_spent || 0).toFixed(2) %></h3>
+                            <p>Total Spent</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-bell"></i>
+                        <div>
+                            <h3><%= notifications.length %></h3>
+                            <p>Notifications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Upcoming Trips</h2>
+                            <a href="/user/trips">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (upcomingTrips.length > 0) { %>
+                                <% upcomingTrips.forEach(trip => { %>
+                                    <div class="trip-item">
+                                        <div class="trip-info">
+                                            <h4><%= trip.origin %> → <%= trip.destination %></h4>
+                                            <p><%= trip.flight_number %> • <%= new Date(trip.departure_time).toLocaleDateString() %></p>
+                                        </div>
+                                        <span class="badge badge-<%= trip.status %>"><%= trip.status %></span>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No upcoming trips. <a href="/flights/search">Search flights</a></p>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Notifications</h2>
+                            <a href="/user/notifications">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (notifications.length > 0) { %>
+                                <% notifications.forEach(notif => { %>
+                                    <div class="notification-item">
+                                        <h4><%= notif.title %></h4>
+                                        <p><%= notif.message %></p>
+                                        <small><%= new Date(notif.created_at).toLocaleDateString() %></small>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No new notifications</p>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Special Deals</h2>
+                            <a href="/flights/deals/all">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (deals.length > 0) { %>
+                                <% deals.forEach(deal => { %>
+                                    <div class="deal-item">
+                                        <h4><%= deal.title %></h4>
+                                        <p><%= deal.description %></p>
+                                        <span class="deal-code">Code: <%= deal.code %></span>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No active deals</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+</body>
+</html>

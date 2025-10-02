@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-plane"></i>
+                <span>SkyVoyage Vendor</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/vendor/dashboard" class="active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="/vendor/inventory">
+                    <i class="fas fa-plane-departure"></i> Flight Inventory
+                </a>
+                <a href="/vendor/bookings">
+                    <i class="fas fa-ticket-alt"></i> Bookings
+                </a>
+                <a href="/vendor/analytics">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </a>
+                <a href="/vendor/pricing">
+                    <i class="fas fa-dollar-sign"></i> Pricing
+                </a>
+                <a href="/vendor/marketing">
+                    <i class="fas fa-bullhorn"></i> Marketing
+                </a>
+                <a href="/vendor/settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="/auth/logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Vendor Dashboard - <%= vendor.company_name %></h1>
+                <div class="user-info">
+                    <span>Health Score: <%= (vendor.health_score * 100).toFixed(0) %>%</span>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-plane"></i>
+                        <div>
+                            <h3><%= stats.total_flights || 0 %></h3>
+                            <p>Total Flights</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-ticket-alt"></i>
+                        <div>
+                            <h3><%= stats.total_bookings || 0 %></h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div>
+                            <h3>$<%= (stats.total_revenue || 0).toFixed(2) %></h3>
+                            <p>Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <div>
+                            <h3>$<%= (stats.total_commission || 0).toFixed(2) %></h3>
+                            <p>Platform Commission</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Recent Bookings</h2>
+                            <a href="/vendor/bookings">View All</a>
+                        </div>
+                        <div class="card-body">
+                            <% if (recentBookings.length > 0) { %>
+                                <% recentBookings.forEach(booking => { %>
+                                    <div class="trip-item">
+                                        <div class="trip-info">
+                                            <h4><%= booking.origin %> → <%= booking.destination %></h4>
+                                            <p><%= booking.first_name %> <%= booking.last_name %> • <%= booking.flight_number %></p>
+                                        </div>
+                                        <span class="badge badge-<%= booking.status %>"><%= booking.status %></span>
+                                    </div>
+                                <% }) %>
+                            <% } else { %>
+                                <p class="empty-state">No recent bookings</p>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Quick Actions</h2>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <a href="/vendor/inventory" class="btn-action">
+                                    <i class="fas fa-plus"></i> Add New Flight
+                                </a>
+                                <a href="/vendor/analytics" class="btn-action">
+                                    <i class="fas fa-chart-bar"></i> View Analytics
+                                </a>
+                                <a href="/vendor/pricing" class="btn-action">
+                                    <i class="fas fa-edit"></i> Update Pricing
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .btn-action {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-action:hover {
+            background: #0d62c9;
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+</html>
