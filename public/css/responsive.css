@@ -1,0 +1,557 @@
+/* Responsive Design Styles */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .destinations-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .deals-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Medium screens (992px to 1199px) */
+@media (max-width: 1199px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    .widgets {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .deals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small screens (768px to 991px) */
+@media (max-width: 991px) {
+    .header-search-form {
+        display: none;
+    }
+    
+    .header-right {
+        gap: 10px;
+    }
+    
+    .user-profile span {
+        display: none;
+    }
+
+    .auth-buttons {
+        display: none;
+    }
+
+    .dropdown-content {
+        min-width: 280px;
+        right: -20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .footer-column {
+        min-width: 100%;
+    }
+    
+    .booking-types {
+        flex-direction: column;
+    }
+    
+    .booking-type {
+        min-width: 100%;
+    }
+    
+    .search-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .flight-route {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .flight-details {
+        flex-wrap: wrap;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .booking-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .deals-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sort-filter {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bottom-nav {
+        display: flex;
+    }
+
+    .sos-button, .ai-concierge, .luxury-toggle {
+        display: flex;
+    }
+    
+    .persuasive-notification {
+        max-width: calc(100% - 40px);
+    }
+}
+
+/* Extra small screens (576px and below) */
+@media (max-width: 576px) {
+    .brand-name {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .hero-section {
+        padding: 20px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .widget-header {
+        flex-wrap: wrap;
+    }
+    
+    .widget-tab {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+    
+    .notification-panel {
+        width: 300px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
+
+    .onboarding-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .luxury-toggle {
+        display: none;
+    }
+    
+    .auth-content {
+        padding: 15px;
+    }
+    
+    .auth-form {
+        padding: 20px 15px;
+    }
+    
+    .auth-links a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .search-container {
+        padding: 15px;
+    }
+    
+    .search-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .destination-card,
+    .deal-card,
+    .feature-card {
+        margin-bottom: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .stat-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .flight-card {
+        padding: 15px;
+    }
+    
+    .flight-destination {
+        font-size: 1rem;
+    }
+    
+    .deal-content {
+        padding: 15px;
+    }
+    
+    .deal-destination {
+        font-size: 1.1rem;
+    }
+    
+    .current-price {
+        font-size: 1.2rem;
+    }
+    
+    .action-card {
+        padding: 20px;
+    }
+    
+    .action-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .tip-card {
+        padding: 20px;
+    }
+    
+    .tip-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        padding: 20px;
+        min-height: auto;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .search-container {
+        padding: 20px;
+    }
+    
+    .auth-content {
+        padding: 20px;
+    }
+    
+    .auth-form {
+        padding: 20px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .header,
+    .footer,
+    .ai-concierge,
+    .sos-button,
+    .luxury-toggle,
+    .toast,
+    .persuasive-notification {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+    }
+    
+    .content {
+        padding: 0 !important;
+    }
+    
+    .flight-card,
+    .deal-card,
+    .stat-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+    
+    .hero-section {
+        background: none !important;
+        color: black !important;
+    }
+    
+    .hero-title,
+    .hero-subtitle {
+        color: black !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #0000ff;
+        --secondary: #ff0000;
+        --success: #008000;
+        --warning: #ffa500;
+        --danger: #ff0000;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --card-bg: #ffffff;
+        --secondary-bg: #ffffff;
+    }
+    
+    .card,
+    .flight-card,
+    .deal-card,
+    .stat-card {
+        border: 2px solid #000000;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        border: 2px solid #000000;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .shape {
+        animation: none !important;
+    }
+    
+    .notification-badge {
+        animation: none !important;
+    }
+    
+    .urgency-timer {
+        animation: none !important;
+    }
+}
+
+/* Dark mode preferences */
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        --primary-bg: #0f0f1a;
+        --secondary-bg: #1a1a2e;
+        --card-bg: #22223d;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0cc;
+    }
+}
+
+/* Light mode preferences */
+@media (prefers-color-scheme: light) {
+    body:not(.dark-mode) {
+        --primary-bg: #f0f2f5;
+        --secondary-bg: #ffffff;
+        --card-bg: #ffffff;
+        --text-primary: #2d3436;
+        --text-secondary: #636e72;
+    }
+}
+
+/* Focus styles for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    *:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+    
+    button:focus,
+    .btn-primary:focus,
+    .btn-secondary:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .flight-card:hover,
+    .deal-card:hover,
+    .destination-card:hover,
+    .feature-card:hover,
+    .action-card:hover,
+    .tip-card:hover {
+        transform: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+    
+    .search-btn:hover,
+    .deal-btn:hover {
+        transform: none;
+    }
+    
+    .dropdown-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Very large screens */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+    
+    .hero-content {
+        gap: 80px;
+    }
+    
+    .stats-grid {
+        gap: 30px;
+    }
+    
+    .destinations-grid {
+        gap: 30px;
+    }
+    
+    .deals-grid {
+        gap: 30px;
+    }
+    
+    .features-grid {
+        gap: 30px;
+    }
+}
