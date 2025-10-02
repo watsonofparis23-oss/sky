@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyVoyage - Premium Flight Booking & Travel Companion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-plane"></i> SkyVoyage</h2>
+        </div>
+        <nav class="sidebar-menu">
+            <h3>Authentication</h3>
+            <ul>
+                <li><a href="#" id="sidebarLoginBtn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="#" id="sidebarRegisterBtn"><i class="fas fa-user-plus"></i> Register</a></li>
+                <li><a href="#" id="sidebarRegisterBtn"><i class="fas fa-plane-arrival"></i> Be vendor</a></li>
+
+                <!-- Logout Button (shown when logged in) -->
+                <li id="sidebarLogoutItem" style="display: none;"><a href="#" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+
+            <h3>Main</h3>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-compass"></i> Discover</a></li>
+                <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
+                <li><a href="#"><i class="fas fa-suitcase"></i> My Trips</a></li>
+                <li><a href="#"><i class="fas fa-star"></i> Traveler Experiences</a></li>
+            </ul>
+
+            <h3>Bookings & Management</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-plane-departure"></i> My Flights</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Booking Management</a></li>
+                <li><a href="#"><i class="fas fa-times-circle"></i> Cancel</a></li>
+                <li><a href="#"><i class="fas fa-chair"></i> Change Seat</a></li>
+                <li><a href="#"><i class="fas fa-luggage-cart"></i> Baggage</a></li>
+                <li><a href="#"><i class="fas fa-calendar-alt"></i> Upcoming Trips</a></li>
+                <li><a href="#"><i class="fas fa-bookmark"></i> Saved Trips</a></li>
+                <li><a href="#"><i class="fas fa-globe-americas"></i> Multicity</a></li>
+            </ul>
+
+            <h3>Travel Services</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-route"></i> Travel Journey</a></li>
+                <li><a href="#"><i class="fas fa-suitcase-rolling"></i> AI Packing List</a></li>
+                <li><a href="#"><i class="fas fa-passport"></i> Visa & Documentation</a></li>
+                <li><a href="#"><i class="fas fa-shield-alt"></i> Travel Insurance</a></li>
+                <li><a href="#"><i class="fas fa-couch"></i> Lounge Access</a></li>
+                <li><a href="#"><i class="fas fa-map-marked-alt"></i> Airport Maps</a></li>
+                <li><a href="#"><i class="fas fa-clock"></i> Security Wait Times</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Immigration Times</a></li>
+                <li><a href="#"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                <li><a href="#"><i class="fas fa-money-bill-wave"></i> Currency</a></li>
+                <li><a href="#"><i class="fas fa-language"></i> Language Guide</a></li>
+                <li><a href="#"><i class="fas fa-comments"></i> Language Translation</a></li>
+                <li><a href="#"><i class="fas fa-mountain"></i> Local Attractions</a></li>
+                <li><a href="#"><i class="fas fa-bus"></i> Transport</a></li>
+                <li><a href="#"><i class="fas fa-shopping-bag"></i> Duty Free Shopping</a></li>
+            </ul>
+
+            <!-- Additional menu sections... -->
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="header-search-form">
+                <input type="text" placeholder="From" id="headerFrom">
+                <input type="text" placeholder="To" id="headerTo">
+                <input type="date" placeholder="Date" id="headerDate">
+                <button id="headerSearchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-right">
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                    <div class="theme-thumb"></div>
+                </div>
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn-login" id="headerLoginBtn">Login</button>
+                    <button class="btn-register" id="headerRegisterBtn">Register</button>
+                </div>
+                <div class="notification-btn dropdown" id="notificationBtn" style="display: none;">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                    <div class="dropdown-content">
+                        <h3>Notifications</h3>
+                        <div class="notification-item">
+                            <div class="notification-icon">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div class="notification-content">
+                                <p>Your flight to London has been confirmed</p>
+                                <span class="notification-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-notifications">View All Notifications</a>
+                    </div>
+                </div>
+                <div class="user-btn dropdown" id="userBtn" style="display: none;">
+                    <div class="user-profile">
+                        <div class="user-avatar">JS</div>
+                        <span>John Smith</span>
+                    </div>
+                    <div class="dropdown-content profile-dropdown">
+                        <div class="user-info">
+                            <div class="user-avatar">JS</div>
+                            <div class="user-details">
+                                <h4>John Smith</h4>
+                                <p>Premium Member</p>
+                            </div>
+                        </div>
+                        <ul class="profile-menu">
+                            <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+                            <li><a href="#"><i class="fas fa-suitcase"></i> My Bookings</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="#"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+                            <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <section class="dashboard">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Find Your Perfect Flight</h1>
+                    <p class="hero-subtitle">Search, compare and book flights with our AI-powered platform. Get the best deals to over 200+ countries worldwide.</p>
+                </div>
+            </div>
+
+            <div class="page-title">
+                <h1>Dashboard</h1>
+                <button class="btn-primary" id="bookFlightBtn">Book Flight</button>
+            </div>
+
+            <!-- Flight Booking Section -->
+            <div class="booking-type-selector">
+                <h2>Book Your Flight</h2>
+                <p>Select your travel type and find the perfect flight for your journey</p>
+                
+                <div class="booking-types">
+                    <div class="booking-type active" data-type="leisure">
+                        <i class="fas fa-umbrella-beach"></i>
+                        <h3>Leisure</h3>
+                        <p>Vacation & relaxation</p>
+                    </div>
+                    <div class="booking-type" data-type="solo">
+                        <i class="fas fa-user"></i>
+                        <h3>Solo</h3>
+                        <p>Traveling alone</p>
+                    </div>
+                    <div class="booking-type" data-type="family">
+                        <i class="fas fa-users"></i>
+                        <h3>Family</h3>
+                        <p>Travel with family</p>
+                    </div>
+                    <div class="booking-type" data-type="business">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Business</h3>
+                        <p>Work trips</p>
+                    </div>
+                    <div class="booking-type" data-type="multicity">
+                        <i class="fas fa-route"></i>
+                        <h3>Multicity</h3>
+                        <p>Multiple destinations</p>
+                    </div>
+                </div>
+
+                <div class="flight-search-form">
+                    <div class="form-group">
+                        <label for="searchFrom"><i class="fas fa-map-marker-alt"></i> From</label>
+                        <input type="text" id="searchFrom" placeholder="Departure City">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchTo"><i class="fas fa-map-marker"></i> To</label>
+                        <input type="text" id="searchTo" placeholder="Arrival City">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchDeparture"><i class="fas fa-calendar-alt"></i> Departure</label>
+                        <input type="date" id="searchDeparture">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchReturn"><i class="fas fa-calendar-check"></i> Return</label>
+                        <input type="date" id="searchReturn">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchPassengers"><i class="fas fa-users"></i> Travelers</label>
+                        <select id="searchPassengers">
+                            <option>1 Adult</option>
+                            <option>2 Adults</option>
+                            <option selected>2 Adults, 1 Child</option>
+                            <option>2 Adults, 2 Children</option>
+                            <option>3+ Adults</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="searchClass"><i class="fas fa-couch"></i> Class</label>
+                        <select id="searchClass">
+                            <option>Economy</option>
+                            <option>Premium Economy</option>
+                            <option selected>Business</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="search-flights">Search Flights <i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="upcomingTripsCount">0</h3>
+                        <p>Upcoming Trips</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="loyaltyPointsCount">0</h3>
+                        <p>Loyalty Points</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2</h3>
+                        <p>Active Deals</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="notificationCount">0</h3>
+                        <p>Notifications</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <section class="search-results" id="search-results" style="display: none;">
+                <div class="result-header">
+                    <div class="result-count" id="resultCount">0 flights found</div>
+                    <div class="sort-filter">
+                        <select id="sort-by">
+                            <option value="price">Price: Low to High</option>
+                            <option value="duration">Duration: Shortest</option>
+                            <option value="departure">Departure: Earliest</option>
+                        </select>
+                        <select id="filter-by">
+                            <option value="all">All Airlines</option>
+                            <option value="nonstop">Non-stop Only</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="flight-results-container">
+                    <!-- Flight results will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Loader -->
+            <div class="loader" id="loader" style="display: none;">
+                <div class="loader-spinner"></div>
+                <p>Finding the best flights for you...</p>
+            </div>
+
+            <!-- Continue with rest of the dashboard content... -->
+        </section>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Welcome to SkyVoyage</h2>
+                <p>Access your account or create a new one</p>
+            </div>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Your password" required>
+                </div>
+                <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" style="font-size: 0.9rem; color: var(--primary);">Forgot password?</a>
+                </div>
+                <button type="submit" class="form-submit">Login</button>
+            </form>
+            
+            <form id="registerForm" class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" placeholder="Your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" placeholder="Your last name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="Your email address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" placeholder="Create a password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                </div>
+                <button type="submit" class="form-submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Operation completed successfully!</span>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
